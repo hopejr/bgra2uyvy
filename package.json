@@ -1,5 +1,5 @@
 {
-  "main": "lib/binding.js",
+  "main": "lib/bgra2uyvy.js",
   "dependencies": {
     "node-addon-api": "^1.1.0"
   },
