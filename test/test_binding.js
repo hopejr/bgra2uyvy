@@ -1,4 +1,4 @@
-const Bgra2uyvy = require("../lib/binding.js");
+const Bgra2uyvy = require("../lib/bgra2uyvy.js");
 const assert = require("assert");
 
 assert(Bgra2uyvy.convert, "The expected function is undefined");

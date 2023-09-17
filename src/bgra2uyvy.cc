@@ -52,9 +52,9 @@ Value Convert(const CallbackInfo& info) {
 
   uint8_t yuvdata[(width * 16 / 8) * height];
 
-  uint8_t pos = 0;
+  size_t pos = 0;
 
-  for (uint8_t i = 0; i < (length / bpp) - 1; i += 2) {
+  for (size_t i = 0; i < (length / bpp) - 1; i += 2) {
     uint8_t b1 = bgradata[(i * bpp)];
     uint8_t g1 = bgradata[(i * bpp) + 1];
     uint8_t r1 = bgradata[(i * bpp) + 2];
