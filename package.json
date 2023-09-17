@@ -1,0 +1,15 @@
+{
+  "main": "lib/binding.js",
+  "dependencies": {
+    "node-addon-api": "^1.1.0"
+  },
+  "scripts": {
+    "test": "node --napi-modules ./test/test_binding.js"
+  },
+  "gypfile": true,
+  "name": "bgra2uyvy",
+  "version": "1.0.0",
+  "description": "Node.js addon to convert BGRA to UYVY",
+  "author": "James Hope",
+  "license": "ISC"
+}
