@@ -1,6 +1,8 @@
 #include <napi.h>
+#include <vector>
 
 using namespace Napi;
+using namespace std;
 
 uint8_t getY(uint8_t r, uint8_t g, uint8_t b) {
   return 16 + (((r << 6) + (r << 1) + (g << 7) + g + (b << 4) + (b << 3) + b) >> 8);
@@ -50,7 +52,8 @@ Value Convert(const CallbackInfo& info) {
 
   uint8_t bpp = (uint8_t)((length / width) / height);
 
-  uint8_t yuvdata[(width * 16 / 8) * height];
+  size_t outLen = (width * 16 / 8) * height;
+  vector<uint8_t> yuvdata(outLen);
 
   size_t pos = 0;
 
@@ -65,13 +68,15 @@ Value Convert(const CallbackInfo& info) {
     uint8_t u1 = getU(r1, g1, b1);
     uint8_t v1 = getV(r1, g1, b1);
     uint8_t y2 = getY(r2, g2, b2);
-    yuvdata[pos++] = u1;
-    yuvdata[pos++] = y1;
-    yuvdata[pos++] = v1;
-    yuvdata[pos++] = y2;
+    if (pos < outLen) {
+      yuvdata[pos++] = u1;
+      yuvdata[pos++] = y1;
+      yuvdata[pos++] = v1;
+      yuvdata[pos++] = y2;
+    }
   }
 
-  return Buffer<uint8_t>::Copy(env, yuvdata, sizeof(yuvdata));
+  return Buffer<uint8_t>::Copy(env, yuvdata.data(), yuvdata.size());
 }
 
 Object Init(Env env, Object exports) {
