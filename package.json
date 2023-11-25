@@ -1,14 +1,20 @@
 {
   "main": "lib/bgra2uyvy.js",
   "dependencies": {
-    "node-addon-api": "^1.1.0"
+    "cross-spawn": "^7.0.3",
+    "node-addon-api": "^6.1.0"
   },
   "scripts": {
+    "install": "node arch.mjs",
+    "build": "node-gyp rebuild",
+    "build:linux-arm": "CXX=arm-linux-gnueabihf-g++ node-gyp rebuild --arch\"arm\" --target_arch=\"arm\"",
+    "build:linux-arm64": "CXX=aarch64-linux-gnu-g++ node-gyp rebuild --arch\"arm64\" --target_arch=\"arm64\"",
+    "build:linux-x64": "CXX=x86_64-linux-gnu-g++ node-gyp rebuild --arch\"x64\" --target_arch=\"x64\"",
     "test": "node --napi-modules ./test/test_binding.js"
   },
   "gypfile": true,
   "name": "bgra2uyvy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Node.js addon to convert BGRA to UYVY",
   "author": "James Hope",
   "license": "ISC"

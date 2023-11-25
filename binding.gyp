@@ -1,10 +1,9 @@
 {
   'targets': [
     {
-      'target_name': 'bgra2uyvy-native',
+      'target_name': 'bgra2uyvy',
       'sources': [ 'src/bgra2uyvy.cc' ],
       'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")"],
-      'dependencies': ["<!(node -p \"require('node-addon-api').gyp\")"],
       'cflags!': [ '-fno-exceptions' ],
       'cflags_cc!': [ '-fno-exceptions' ],
       'xcode_settings': {
